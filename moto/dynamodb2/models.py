@@ -672,6 +672,10 @@ class Table(BaseModel):
         results = []
         scanned_count = 0
 
+        # Should simulate if you ask for more than 1MB and them enforcing it
+        if not limit or limit > 1000:
+            limit = 1000
+
         for item in self.all_items():
             scanned_count += 1
             passes_all_conditions = True
